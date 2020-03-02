@@ -12,7 +12,7 @@ const About = () => {
       }}
     >
       <div className="container" style={{ flex: "1 0 auto" }}>
-        <h2 className="center">About us</h2>
+        <h2 className="center">About</h2>
         <div className="row">
           <div className="col s12">
             <p className="flow-text">
