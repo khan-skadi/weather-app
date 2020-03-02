@@ -1,4 +1,5 @@
 import React from "react";
+import Moment from "react-moment";
 
 const Statistics = props => {
   return (
@@ -27,9 +28,9 @@ const Statistics = props => {
             <td>{props.max} &deg;C</td>
             <td>{props.averageTemp} &deg;C</td>
             <td>{props.ltaa} &deg;C</td>
-            <td>{props.highestHumid}</td>
-            <td>{props.averageHumidity}</td>
-            <td>{props.lowestHumid}</td>
+            <td>{props.highestHumid} %</td>
+            <td>{props.averageHumidity} %</td>
+            <td>{props.lowestHumid} %</td>
           </tr>
         </tbody>
       </table>
@@ -42,14 +43,18 @@ const Statistics = props => {
               {" "}
               Warmest time of the following period:
             </span>{" "}
-            {props.warmestTime}
+            <Moment format="MMMM Do YYYY, h:mm:ss a">
+              {props.warmestTime}
+            </Moment>
           </h5>
           <h5>
             {" "}
             <span className="grey-text">
               Coldest time of the following period:
             </span>{" "}
-            {props.coldestTime}
+            <Moment format="MMMM Do YYYY, h:mm:ss a">
+              {props.coldestTime}
+            </Moment>
           </h5>
         </div>
       </div>
