@@ -1,5 +1,5 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import sun from "../img/sun.png";
 
 const Navbar = props => {
@@ -23,14 +23,14 @@ const Navbar = props => {
           </div>
         </form>
 
-        <div className="brand-logo center">
-          <a href="/">
+        <Link to="/">
+          <div className="brand-logo center">
             <img src={sun} width="60px" alt="" />
-          </a>
-        </div>
+          </div>
+        </Link>
         <ul className="right">
           <li>
-            <NavLink to="/" activeStyle={backgroundStyle}>
+            <NavLink exact to="/" activeStyle={backgroundStyle}>
               Statistics
             </NavLink>
           </li>

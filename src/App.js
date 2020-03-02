@@ -1,5 +1,5 @@
 import React, { Fragment, useState, useEffect, useRef } from "react";
-import { BrowserRouter, Route } from "react-router-dom";
+import { BrowserRouter, Route, Switch } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import Statistics from "./components/Statistics";
 import Hourly from "./components/Hourly";
@@ -115,25 +115,27 @@ function App() {
     <Fragment>
       <BrowserRouter>
         <Navbar onChange={onChange} onSubmit={onSubmit} text={text} />
-        <Route exact path="/">
-          <Statistics
-            weatherData={weatherData}
-            max={max}
-            averageTemp={averageTemp}
-            ltaa={ltaa}
-            highestHumid={highestHumid}
-            averageHumidity={averageHumidity}
-            lowestHumid={lowestHumid}
-            warmestTime={warmestTime}
-            coldestTime={coldestTime}
-          />
-        </Route>
-        <Route path="/hourly">
-          <Hourly weatherData={weatherData} />
-        </Route>
-        <Route path="/about">
-          <About />
-        </Route>
+        <Switch>
+          <Route exact path="/">
+            <Statistics
+              weatherData={weatherData}
+              max={max}
+              averageTemp={averageTemp}
+              ltaa={ltaa}
+              highestHumid={highestHumid}
+              averageHumidity={averageHumidity}
+              lowestHumid={lowestHumid}
+              warmestTime={warmestTime}
+              coldestTime={coldestTime}
+            />
+          </Route>
+          <Route path="/hourly">
+            <Hourly weatherData={weatherData} />
+          </Route>
+          <Route path="/about">
+            <About />
+          </Route>
+        </Switch>
       </BrowserRouter>
     </Fragment>
   );
