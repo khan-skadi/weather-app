@@ -24,7 +24,9 @@ const Navbar = props => {
         </form>
 
         <div className="brand-logo center">
-          <img src={sun} width="60px" alt="" />
+          <a href="/">
+            <img src={sun} width="60px" alt="" />
+          </a>
         </div>
         <ul className="right">
           <li>

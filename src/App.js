@@ -31,7 +31,7 @@ function App() {
   const onSubmit = e => {
     e.preventDefault();
     getWeather(input);
-
+    setLoading(false);
     setInput("");
   };
 
@@ -41,9 +41,6 @@ function App() {
       "Skopje"}&units=metric&APPID=${apiKey}`;
 
     const res = await fetch(url);
-    // const res = await fetch(
-    //   `https://api.openweathermap.org/data/2.5/forecast?q=Skopje&units=metric&APPID=${apiKey}`
-    // );
     const data = await res.json();
     setWeatherData(data);
     setLoading(false);

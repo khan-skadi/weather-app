@@ -5,8 +5,13 @@ const Hourly = props => {
   const { weatherData } = props;
 
   return (
-    <div>
-      <h1>Hourly</h1>
+    <div className="container">
+      <h2 className="center">Hourly stats</h2>
+      <div className="divider"></div>
+
+      <h3 className="center blue-grey-text" style={{ marginBottom: "50px" }}>
+        {weatherData && weatherData.city.name}
+      </h3>
       <table className="striped centered">
         <thead>
           <tr className="flow-text">

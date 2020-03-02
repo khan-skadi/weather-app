@@ -2,14 +2,10 @@ import React from "react";
 
 const Statistics = props => {
   return (
-    <div>
-      <ul className="with-header">
-        <li className="collection-header center">
-          <h2>Weather Today</h2>
-          <h5>awesome weather app</h5>
-        </li>
-        <div className="divider"></div>
-      </ul>
+    <div className="container">
+      <h2 className="center">Weather Today</h2>
+      <h5 className="center">Poor man's weather app &copy;</h5>
+      <div className="divider"></div>
 
       <h3 className="center blue-grey-text" style={{ marginBottom: "50px" }}>
         {props.weatherData && props.weatherData.city.name}
