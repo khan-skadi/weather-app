@@ -1,25 +1,15 @@
 import React from "react";
+import Moment from "react-moment";
 
 const Hourly = props => {
   const { weatherData } = props;
-
-  let icon = weatherData && weatherData.list.map(e => e.weather[0].icon);
-  let description =
-    weatherData && weatherData.list.map(e => e.weather[0].description);
-  let time = weatherData && weatherData.list.map(e => e.dt);
-  let temp = weatherData && weatherData.list.map(e => e.main.temp.toFixed(0));
-  let humid = weatherData && weatherData.list.map(e => e.main.humidity);
-  let windSpeed = weatherData && weatherData.list.map(e => e.wind.speed);
-  console.log(time);
-
-  console.log(weatherData);
 
   return (
     <div>
       <h1>Hourly</h1>
       <table className="striped centered">
         <thead>
-          <tr>
+          <tr className="flow-text">
             <th>Icon</th>
             <th>Description</th>
             <th>Time</th>
@@ -30,62 +20,24 @@ const Hourly = props => {
         </thead>
 
         <tbody>
-          <tr>
-            <td>
-              {icon &&
-                icon.map(e => (
-                  <div>
-                    <img
-                      src={`http://openweathermap.org/img/w/${e}.png`}
-                      alt=""
-                    />
-                  </div>
-                ))}
-            </td>
-            <td>
-              {description &&
-                description.map(e => (
-                  <div>
-                    <p>{`${e}`}</p>
-                  </div>
-                ))}
-            </td>
-            <td>
-              {time &&
-                time.map(e => (
-                  <div>
-                    <p>{new Date(e).toString()}</p>
-                  </div>
-                ))}
-            </td>
-            <td>
-              {" "}
-              {temp &&
-                temp.map(e => (
-                  <div>
-                    <p>{e} &deg;C</p>
-                  </div>
-                ))}
-            </td>
-            <td>
-              {" "}
-              {humid &&
-                humid.map(e => (
-                  <div>
-                    <p>{e + "%"}</p>
-                  </div>
-                ))}
-            </td>
-            <td>
-              {" "}
-              {windSpeed &&
-                windSpeed.map(e => (
-                  <div>
-                    <p>{e + "km/h"}</p>
-                  </div>
-                ))}
-            </td>
-          </tr>
+          {weatherData &&
+            weatherData.list.map(e => (
+              <tr className="flow-text">
+                <td>
+                  <img
+                    src={`http://openweathermap.org/img/w/${e.weather[0].icon}.png`}
+                    alt=""
+                  />
+                </td>
+                <td>{e.weather[0].description}</td>
+                <td>
+                  <Moment format="MMMM Do YYYY, h:mm:ss a">{e.dt}</Moment>
+                </td>
+                <td>{e.main.temp.toFixed(0)}&deg;C</td>
+                <td>{e.main.humidity}%</td>
+                <td>{e.wind.speed} km/h</td>
+              </tr>
+            ))}
         </tbody>
       </table>
     </div>
