@@ -11,13 +11,16 @@ import M from "materialize-css/dist/js/materialize.min.js";
 
 function App() {
   const [weatherData, setWeatherData] = useState(null);
+  const [weatherDaily, setWeatherDaily] = useState(null);
   const [loading, setLoading] = useState(false);
   const [input, setInput] = useState("");
+  console.log(weatherData);
 
   useEffect(() => {
     M.AutoInit();
     setLoading(true);
     getWeather();
+    getWeatherDaily();
 
     //eslint-disable-next-line
   }, []);
@@ -30,6 +33,9 @@ function App() {
 
   const onSubmit = e => {
     e.preventDefault();
+    if ((<Route path="hourly" />)) {
+      getWeatherDaily(input);
+    }
     getWeather(input);
     setLoading(false);
     setInput("");
@@ -43,6 +49,17 @@ function App() {
     const res = await fetch(url);
     const data = await res.json();
     setWeatherData(data);
+    setLoading(false);
+  };
+
+  const getWeatherDaily = async input => {
+    const apiKeyDaily = "d7c859b227a5e86abcd30697f4c17f80";
+    const url = `https://api.openweathermap.org/data/2.5/forecast?q=${input ||
+      "London"}&units=metric&&appid=${apiKeyDaily}`;
+
+    const res = await fetch(url);
+    const data = await res.json();
+    setWeatherDaily(data);
     setLoading(false);
   };
 
@@ -105,7 +122,6 @@ function App() {
     weatherData &&
     weatherData.list.find(e => (e.main.temp === ltaa ? e.dt : null));
   let coldestTime = coldestTimeFind && new Date(coldestTimeFind.dt).toString();
-  console.log(weatherData);
 
   if (loading) {
     return <Preloader />;
@@ -130,7 +146,7 @@ function App() {
             />
           </Route>
           <Route path="/hourly">
-            <Hourly weatherData={weatherData} />
+            <Hourly weatherData={weatherDaily} />
           </Route>
           <Route path="/about">
             <About />

@@ -27,7 +27,7 @@ const Hourly = props => {
         <tbody>
           {weatherData &&
             weatherData.list.map(e => (
-              <tr className="flow-text">
+              <tr className="flow-text" key={e.dt}>
                 <td>
                   <img
                     src={`http://openweathermap.org/img/w/${e.weather[0].icon}.png`}
