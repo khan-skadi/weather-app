@@ -22,7 +22,7 @@ function App() {
     //eslint-disable-next-line
   }, []);
 
-  const text = useRef("");
+  let text = useRef("");
 
   const onChange = () => {
     setInput(text.current.value);

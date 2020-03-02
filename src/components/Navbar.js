@@ -15,6 +15,7 @@ const Navbar = props => {
               ref={props.text}
               onChange={props.onChange}
               required
+              style={{ width: "20em" }}
             />
             <label className="label-icon" htmlFor="search">
               <i className="material-icons">search</i>
