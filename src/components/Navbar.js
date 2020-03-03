@@ -6,7 +6,7 @@ const Navbar = props => {
   return (
     <nav className="blue darken-1">
       <div className="nav-wrapper">
-        <form className="left" onSubmit={props.onSubmit}>
+        <form className="left valign-wrapper" onSubmit={props.onSubmit}>
           <div className="input-field">
             <input
               id="search"
@@ -22,6 +22,17 @@ const Navbar = props => {
             </label>
             <i className="material-icons">close</i>
           </div>
+          <button
+            className="btn waves-effect waves-light valign-wrapper yellow darken-2"
+            type="submit"
+            name="action"
+            style={{ marginLeft: "5px" }}
+          >
+            Submit
+            <i class="material-icons right" style={{ marginTop: "-14px" }}>
+              send
+            </i>
+          </button>
         </form>
 
         <Link to="/">

@@ -1,8 +1,13 @@
 import React from "react";
 import Moment from "react-moment";
+import Preloader from "./Preloader";
 
 const Hourly = props => {
   const { weatherData } = props;
+
+  if (!weatherData) {
+    return <Preloader />;
+  }
 
   return (
     <div className="container">

@@ -14,7 +14,6 @@ function App() {
   const [weatherDaily, setWeatherDaily] = useState(null);
   const [loading, setLoading] = useState(false);
   const [input, setInput] = useState("");
-  console.log(weatherData);
 
   useEffect(() => {
     M.AutoInit();
@@ -45,22 +44,30 @@ function App() {
     const apiKey = "d7c859b227a5e86abcd30697f4c17f80";
     const url = `https://api.openweathermap.org/data/2.5/forecast?q=${input ||
       "Skopje"}&units=metric&APPID=${apiKey}`;
+    try {
+      const res = await fetch(url);
+      const data = await res.json();
+      setLoading(false);
 
-    const res = await fetch(url);
-    const data = await res.json();
-    setWeatherData(data);
-    setLoading(false);
+      return setWeatherData(data);
+    } catch (err) {
+      return err;
+    }
   };
+  console.log(weatherDaily);
 
   const getWeatherDaily = async input => {
     const apiKeyDaily = "d7c859b227a5e86abcd30697f4c17f80";
     const url = `https://api.openweathermap.org/data/2.5/forecast?q=${input ||
       "London"}&units=metric&&appid=${apiKeyDaily}`;
-
-    const res = await fetch(url);
-    const data = await res.json();
-    setWeatherDaily(data);
-    setLoading(false);
+    try {
+      const res = await fetch(url);
+      const data = await res.json();
+      setLoading(false);
+      return setWeatherDaily(data);
+    } catch (err) {
+      return err;
+    }
   };
 
   // Find average temperature today
@@ -115,13 +122,13 @@ function App() {
   let warmestTimeFind =
     weatherData &&
     weatherData.list.find(e => (e.main.temp === max ? e.dt : null));
-  let warmestTime = warmestTimeFind && new Date(warmestTimeFind.dt).toString();
+  let warmestTime = warmestTimeFind && new Date(warmestTimeFind.dt);
 
   // Find coldest time of day
   let coldestTimeFind =
     weatherData &&
     weatherData.list.find(e => (e.main.temp === ltaa ? e.dt : null));
-  let coldestTime = coldestTimeFind && new Date(coldestTimeFind.dt).toString();
+  let coldestTime = coldestTimeFind && new Date(coldestTimeFind.dt);
 
   if (loading) {
     return <Preloader />;

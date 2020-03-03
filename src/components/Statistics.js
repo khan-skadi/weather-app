@@ -52,7 +52,7 @@ const Statistics = props => {
             <span className="grey-text">
               Coldest time of the following period:
             </span>{" "}
-            <Moment format="DMMMM Do YYYY, h:mm:ss a">
+            <Moment format="MMMM Do YYYY, h:mm:ss a">
               {props.coldestTime}
             </Moment>
           </h5>
