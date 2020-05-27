@@ -1,4 +1,4 @@
-## &#128279; App Link
+## App Link
 
 https://skadi-weather-app.herokuapp.com/
 
